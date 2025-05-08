@@ -18,7 +18,8 @@ class AppArbol:
         tk.Button(botones, text="Buscar", command=self.buscar).pack(side=tk.LEFT, padx=5)
         tk.Button(botones, text="Eliminar", command=self.eliminar).pack(side=tk.LEFT, padx=5)
         tk.Button(botones, text="Mostrar Inorden", command=self.mostrar_inorden).pack(side=tk.LEFT, padx=5)
-
+        tk.Button(botones, text="Mostrar Preorden", command=self.mostrar_preorden).pack(side=tk.LEFT, padx=5)
+        
         self.canvas = tk.Canvas(root, width=600, height=400, bg="white")
         self.canvas.pack(pady=10)
 
@@ -44,6 +45,11 @@ class AppArbol:
     def mostrar_inorden(self):
         valores = self.arbol.inorden()
         messagebox.showinfo("Recorrido Inorden", " -> ".join(map(str, valores)))
+
+    def mostrar_preorden(self):
+        valores = self.arbol.preorden()
+        messagebox.showinfo("Recorrido Preorden", " -> ".join(map(str, valores)))
+
 
     def obtener_valor(self):
         try:
