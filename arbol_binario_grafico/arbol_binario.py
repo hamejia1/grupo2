@@ -1,9 +1,10 @@
+from collections import deque
+
 class Nodo:
     def __init__(self, valor):
         self.valor = valor
         self.izquierda = None
         self.derecha = None
-
 
 class ArbolBinario:
     def __init__(self):
@@ -58,3 +59,21 @@ class ArbolBinario:
         def _inorden(nodo):
             return _inorden(nodo.izquierda) + [nodo.valor] + _inorden(nodo.derecha) if nodo else []
         return _inorden(self.raiz)
+
+    def por_niveles(self):
+        if not self.raiz:
+            return []
+        
+        resultado = []
+        cola = deque([self.raiz])
+        
+        while cola:
+            nodo = cola.popleft()
+            resultado.append(nodo.valor)
+            
+            if nodo.izquierda:
+                cola.append(nodo.izquierda)
+            if nodo.derecha:
+                cola.append(nodo.derecha)
+        
+        return resultado
